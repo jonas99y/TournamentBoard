@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Router } from '@angular/router';
-import { moveIn, fallIn, moveInLeft } from '../router.animations';
+
 
 @Component({
   selector: 'app-member',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.css'],
-  animations: [moveIn(), fallIn(), moveInLeft()],
-  host: { '[@moveIn]': '' }
+  styleUrls: ['./members.component.css']
 })
 
 export class MembersComponent implements OnInit {

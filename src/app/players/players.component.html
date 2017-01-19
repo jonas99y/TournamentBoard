@@ -1,9 +1,15 @@
 <div class="form-container">
-  <ul *ngFor="let player of players | async">
+  <ul *ngFor="let player of allPlayers">
     <li>
-      {{player.$key}}
+      {{player.name}}
     </li>
   </ul>
+<ul *ngFor="let player of players$ | async">
+    <li>
+      {{player.name}}
+    </li>
+  </ul>
+
 
 
   <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">

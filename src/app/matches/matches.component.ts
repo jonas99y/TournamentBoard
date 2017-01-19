@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
-import { moveIn, fallIn } from '../router.animations';
+
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-matches',
   templateUrl: './matches.component.html',
-  styleUrls: ['./matches.component.css'],
-  animations: [moveIn(), fallIn()],
-  host: { '[@moveIn]': '' }
+  styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent implements OnInit {
 
@@ -26,7 +24,7 @@ export class MatchesComponent implements OnInit {
   }
 
   onSubmit(formData) {
-    this.matches.push({ PlayerA: "KanEVC-q8YUM3T6NO7T" });
+    this.matches.push({ PlayerA: 'KanEVC-q8YUM3T6NO7T' });
 
 
   }

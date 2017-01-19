@@ -3,7 +3,7 @@
 
   <h2>Join now</h2>
 
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+  <span class="error" *ngIf="error" >{{ error }}</span>
     
   <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
 
