@@ -1,0 +1,16 @@
+<div class="form-container">
+  <ul *ngFor="let player of players | async">
+    <li>
+      {{player.$key}}
+    </li>
+  </ul>
+
+
+  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+
+    <input type="text" placeholder="Player name" (ngModel)="playerName" name="playerName" class="txt" required>
+
+
+    <button type="submit" [disabled]="!formData.valid" class="basic-btn">Add a player</button>
+  </form>
+</div>
