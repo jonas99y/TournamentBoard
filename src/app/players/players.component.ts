@@ -14,21 +14,30 @@ import { Observable } from 'rxjs/Observable';
 export class PlayersComponent implements OnInit {
 
   constructor(public af: AngularFire, private router: Router) {
-    this.players = af.database.list('/players');
+    af.database.list('/players').first().subscribe(players => {
+      this.allPlayers = players;
+    });
+
     console.log(this.players.first())
+    this.players.first().subscribe(x => console.log(x[0].name));
   }
   newPlayerName: string;
   error: any;
-  players: FirebaseListObservable<any[]>;
+  playerName: string;
+  players: any[];
+  allPlayers: any[];
   ngOnInit() {
+  }
+
+  filterPlayers(){
+      this.players = this.allPlayers.filter((player: any, index: number): boolean => {
+        return this.playerName == player.name;
+      });
   }
 
   onSubmit(formData) {
     if (formData.valid) {
-
       this.players.push({ name: formData.value.playerName, status: true });
-
     }
   }
-
 }
