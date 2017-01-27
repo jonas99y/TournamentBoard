@@ -1,16 +1,21 @@
 <div class="form-container">
-  <ul *ngFor="let match of matches | async">
-    <li>
-      {{match.$key}}
-    </li>
-  </ul>
   <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-    <input type="search" placeholder="" (ngModel)="playerB" name="playerB" class="txt" required>
-    <ul>
-        <li *ngFor="let player of players | async">{{player.name}}</li>
-    </ul>
-    <input type="datetime" (ngModel)="matchTime" name="matchTime" required>
+   
+    <md-select (ngModel)="playerA" name="playerA" class="txt" placeholder="Player A" required>
+          <md-option *ngFor="let player of players | async" [value]="player.$key" >{{player.name}}</md-option>    
+    </md-select>
+   
+    <md-select (ngModel)="playerB" name="playerB" placeholder="Player B" class="txt" required>
+          <md-option *ngFor="let player of players | async" [value]="player.$key" >{{player.name}}</md-option>    
+    </md-select>     
+    <material-datepicker [(date)]="date" placeholder="date of the match"></material-datepicker>
 
+    <md-input-container>
+      <input md-input placeholder="Score A" name="scoreA" [value]="">
+    </md-input-container> 
+    <md-input-container>
+      <input md-input placeholder="Score B" name="scoreB" [value]="">
+    </md-input-container>
     <button type="submit" [disabled]="!formData.valid" class="basic-btn">Add a match</button>
   </form>
 </div>
