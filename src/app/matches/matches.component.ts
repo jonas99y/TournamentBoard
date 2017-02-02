@@ -13,18 +13,26 @@ export class MatchesComponent implements OnInit {
 
   constructor(public af: AngularFire, private router: Router) {
     this.players = af.database.list('/players');
-    this.matches = af.database.list('/matches');
+    this.matches = af.database.list('matches');
 
   }
   newPlayerName: string;
   error: any;
+  date:any;
   players: FirebaseListObservable<any[]>;
   matches: FirebaseListObservable<any[]>;
   ngOnInit() {
   }
 
   onSubmit(formData) {
-    this.matches.push({ PlayerA: 'KanEVC-q8YUM3T6NO7T' });
+    console.log(formData.value);
+    console.log(this.date);
+    this.matches.push({
+      PlayerA: formData.value.playerA,
+      PlayerB: formData.value.playerB,
+      ScoreA : formData.value.scoreA,
+      ScoreB: formData.value.scoreB,
+      Date: this.date });
 
 
   }

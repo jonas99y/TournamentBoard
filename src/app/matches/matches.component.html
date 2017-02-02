@@ -11,10 +11,10 @@
     <material-datepicker [(date)]="date" placeholder="date of the match"></material-datepicker>
 
     <md-input-container>
-      <input md-input placeholder="Score A" name="scoreA" [value]="">
+      <input md-input placeholder="Score A" name="scoreA" (ngModel)="scoreA" [value]="">
     </md-input-container> 
     <md-input-container>
-      <input md-input placeholder="Score B" name="scoreB" [value]="">
+      <input md-input placeholder="Score B" name="scoreB" (ngModel)="scoreB" [value]="">
     </md-input-container>
     <button type="submit" [disabled]="!formData.valid" class="basic-btn">Add a match</button>
   </form>
