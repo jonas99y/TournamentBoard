@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
+import {PlayersService} from '../players.service';
+import {Player} from '../player';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -10,14 +12,14 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./players.component.css']
  })
 export class PlayersComponent implements OnInit {
-  players$: FirebaseListObservable<any>;
-  constructor(public af: AngularFire, private router: Router) {
-    this.players$ = af.database.list('players');
+  players$: Observable<Player[]>;
+  constructor(public af: AngularFire, private router: Router, private playersService: PlayersService) {
+    this.players$ = playersService.findAllPlayers();
 };
   ngOnInit(){
   }
 
   onSubmit(formData) {
-    this.players$.push({name:formData.value.playerName, status:false});
+    // this.players$.({name:formData.value.playerName, status:false});
   }
 }
