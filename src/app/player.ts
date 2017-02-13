@@ -1,16 +1,22 @@
 export class Player {
-    
-    constructor (
-        public $key:string,
-        public name:string)
-        {}
 
-    static fromJsonList(array):Player[]{
-        return array.map(Player.fromJson)
-    }
+constructor(
+    public name:string,
+    public authKey?:string
+){ }
+    // constructor (
+    //     public $key:string,
+    //     public name:string,
+    //     public leagues:any,
+    //     public authKey: string = null)
+    //     {}
 
-    static fromJson($key,name):Player
-    {
-        return new Player($key,name)
-    }
+    // static fromJsonList(array):Player[]{
+    //     return array.map(Player.fromJson)
+    // }
+
+    // static fromJson($key,name,leagues):Player
+    // {
+    //     return new Player($key, name, leagues)
+    // }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {Observable, Subject} from "rxjs/Rx";
 import {Player} from "./player";
 import {AngularFireDatabase, FirebaseListObservable, FirebaseRef} from "angularfire2";
@@ -6,18 +6,26 @@ import {AngularFireDatabase, FirebaseListObservable, FirebaseRef} from "angularf
 @Injectable()
 export class PlayersService {
 
-  sdkDb:any;
 
-  constructor( private db:AngularFireDatabase) { 
-    // this.sdkDb = db.
+  private ref: firebase.database.Reference;
+  private playerRef: firebase.database.Reference;
+  constructor(private db: AngularFireDatabase, @Inject(FirebaseRef) fb) { 
+    
+    this.ref = fb.database().ref();
+    
+    this.playerRef = fb.database().ref('players')
+    
   }
 
-findAllPlayers():Observable<Player[]> {
-        return this.db.list('lessons')
-            .do(console.log)
-            .map(Player.fromJsonList);
+  findAllPlayers(): FirebaseListObservable<Player[]> {
+    
+    return <FirebaseListObservable<Player[]>> this.db.list(this.playerRef);
+  }
+  
+    addPlayer(player:Player){
+      this.playerRef.push(player);
+     
     }
-
 
 // createNewPlayer(lesson:any): Observable<any> {
 

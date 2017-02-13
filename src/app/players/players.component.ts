@@ -12,14 +12,15 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./players.component.css']
  })
 export class PlayersComponent implements OnInit {
-  players$: Observable<Player[]>;
+  allPlayers: FirebaseListObservable<Player[]>;
   constructor(public af: AngularFire, private router: Router, private playersService: PlayersService) {
-    this.players$ = playersService.findAllPlayers();
+    this.allPlayers = playersService.findAllPlayers();
+    this.allPlayers.subscribe(snapshot => { console.log(snapshot);});
 };
   ngOnInit(){
   }
 
   onSubmit(formData) {
-    // this.players$.({name:formData.value.playerName, status:false});
+    // this.playersService.addPlayer()
   }
 }

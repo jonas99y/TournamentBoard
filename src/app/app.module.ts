@@ -23,6 +23,8 @@ import {PlayersService} from './players.service';
 import {DatepickerModule } from 'angular2-material-datepicker';
 
 
+
+
 export const firebaseConfig = {
   apiKey: "AIzaSyBxCfbYoG0PeGT78XxiQlB8NFjMsQYpZus",
   authDomain: "tournamentboard-ef914.firebaseapp.com",
