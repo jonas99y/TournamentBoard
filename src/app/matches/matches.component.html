@@ -1,21 +1,23 @@
 <div class="form-container">
-  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-   
-    <md-select (ngModel)="playerA" name="playerA" class="txt" placeholder="Player A" required>
-          <md-option *ngFor="let player of players | async" [value]="player.$key" >{{player.name}}</md-option>    
-    </md-select>
-   
-    <md-select (ngModel)="playerB" name="playerB" placeholder="Player B" class="txt" required>
-          <md-option *ngFor="let player of players | async" [value]="player.$key" >{{player.name}}</md-option>    
-    </md-select>     
-    <material-datepicker [(date)]="date" placeholder="date of the match"></material-datepicker>
+  <md-card>
+    <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
 
-    <md-input-container>
-      <input md-input placeholder="Score A" name="scoreA" (ngModel)="scoreA" [value]="">
-    </md-input-container> 
-    <md-input-container>
-      <input md-input placeholder="Score B" name="scoreB" (ngModel)="scoreB" [value]="">
-    </md-input-container>
-    <button type="submit" [disabled]="!formData.valid" class="basic-btn">Add a match</button>
-  </form>
+      <md-select (ngModel)="playerA" name="playerA" class="txt" placeholder="Player A" required>
+        <md-option *ngFor="let player of players | async" [value]="player.$key">{{player.name}}</md-option>
+      </md-select>
+
+      <md-select (ngModel)="playerB" name="playerB" placeholder="Player B" class="txt" required>
+        <md-option *ngFor="let player of players | async" [value]="player.$key">{{player.name}}</md-option>
+      </md-select>
+      <material-datepicker [(date)]="date" placeholder="date of the match"></material-datepicker>
+
+      <md-input-container>
+        <input md-input placeholder="Score A" name="scoreA" (ngModel)="scoreA" [value]="">
+      </md-input-container>
+      <md-input-container>
+        <input md-input placeholder="Score B" name="scoreB" (ngModel)="scoreB" [value]="">
+      </md-input-container>
+      <button type="submit" [disabled]="!formData.valid" class="basic-btn">Add a match</button>
+    </form>
+  </md-card>
 </div>

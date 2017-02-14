@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+    <md-sidenav #sidenav mode="side" class="app-sidenav">
+        <button md-menu-item>menu</button>
+    </md-sidenav>
+    <md-toolbar color="primary">
+        <button class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>TournamentBoard
+
+        <span class="app-toolbar-filler"></span>
+
+    </md-toolbar>
+    <div class="app-content">
+    <router-outlet ></router-outlet>
+    </div>
+</md-sidenav-layout>

@@ -1,8 +1,21 @@
 <div class="container">
-  
-<ul *ngFor="let player of allPlayers | async">
-    <li>
-      {{player.name}}
-    </li>
-  </ul>
+  <md-card>
+    <h2>All Players:</h2>
+    <ul *ngFor="let player of allPlayers | async">
+      <li>
+        {{player.name}}
+      </li>
+    </ul>
+  </md-card>
+  <md-card>
+    <form>
+      <h2>Add Player:</h2>
+      <br>
+      <md-input #name placeholder="Name" maxlength="50">
+        <md-hint align="end"></md-hint>
+      </md-input>
+
+      <button md-button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </md-card>
 </div>
