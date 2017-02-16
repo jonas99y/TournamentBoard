@@ -1,23 +1,25 @@
 <div class="form-container">
   <md-card>
-    <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+    <form [formGroup]="addMatchForm" (ngSubmit)="addMatch($event)">
 
-      <md-select (ngModel)="playerA" name="playerA" class="txt" placeholder="Player A" required>
-        <md-option *ngFor="let player of players | async" [value]="player.$key">{{player.name}}</md-option>
+      <md-select class="txt" placeholder="Player A" formControlName="playerA">
+        <md-option *ngFor="let player of Players | async" [value]="player.$key">{{player.name}}</md-option>
       </md-select>
 
-      <md-select (ngModel)="playerB" name="playerB" placeholder="Player B" class="txt" required>
-        <md-option *ngFor="let player of players | async" [value]="player.$key">{{player.name}}</md-option>
+      <md-select  placeholder="Player B" class="txt" formControlName="playerB" >
+        <md-option *ngFor="let player of Players | async" [value]="player.$key">{{player.name}}</md-option>
       </md-select>
-      <material-datepicker [(date)]="date" placeholder="date of the match"></material-datepicker>
+      <md-input type="date" formControlName="dateOfMatch" placeholder="date of the match"></md-input>
+      <h3>Regular Time</h3>
+      <md-input placeholder="A" maxlength="2" formControlName="playerAScoreReg">
+        <md-hint align="end"></md-hint>
+      </md-input>
+      <md-input placeholder="B" maxlength="2" formControlName="playerBScoreReg">
+        <md-hint align="end"></md-hint>
+      </md-input>
 
-      <md-input-container>
-        <input md-input placeholder="Score A" name="scoreA" (ngModel)="scoreA" [value]="">
-      </md-input-container>
-      <md-input-container>
-        <input md-input placeholder="Score B" name="scoreB" (ngModel)="scoreB" [value]="">
-      </md-input-container>
-      <button type="submit" [disabled]="!formData.valid" class="basic-btn">Add a match</button>
+
+      <button md-button type="submit" class="basic-btn">Add a match</button>
     </form>
   </md-card>
 </div>

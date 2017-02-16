@@ -1,29 +1,29 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, Subject } from "rxjs/Rx";
-import { Player } from "./Shared/Model/player";
+import { Match } from "./Shared/Model/match";
 import { AngularFireDatabase, FirebaseListObservable, FirebaseRef } from "angularfire2";
 
 @Injectable()
-export class PlayersService {
+export class MatchesService {
 
 
   private ref: firebase.database.Reference;
-  private playerRef: firebase.database.Reference;
+  private matchRef: firebase.database.Reference;
   constructor(private db: AngularFireDatabase, @Inject(FirebaseRef) fb) {
 
     this.ref = fb.database().ref();
 
-    this.playerRef = fb.database().ref('players')
+    this.matchRef = fb.database().ref('match')
 
   }
 
-  findAllPlayers(): FirebaseListObservable<Player[]> {
+  findAllMatches(): FirebaseListObservable<Match[]> {
 
-    return <FirebaseListObservable<Player[]>>this.db.list(this.playerRef);
+    return <FirebaseListObservable<Match[]>>this.db.list(this.matchRef);
   }
 
-  addPlayer(player: Player) {
-    this.playerRef.push(player);
+  addMatch(match: Match) {
+    this.matchRef.push(match);
 
   }
 
