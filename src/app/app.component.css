@@ -28,3 +28,7 @@ height: auto;
 .app-content md-card{
     margin: 20px;
 }
+.app-sidenav{
+  width: 300px;
+}
+

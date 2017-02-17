@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { EmailComponent } from './email/email.component';
 import { PlayersComponent } from './players/players.component';
 import { MatchesComponent } from './matches/matches.component';
+import { LeaguesComponent } from './leagues/leagues.component';
 
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,7 +18,8 @@ export const router: Routes = [
     { path: 'players', component: PlayersComponent, canActivate: [AuthGuard] },
     { path: 'matches', component: MatchesComponent, canActivate: [AuthGuard] },
     { path: 'login-email', component: EmailComponent },
-    { path: 'members', component: MembersComponent, canActivate: [AuthGuard] }
+    { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
+    { path: 'leagues', component: LeaguesComponent, canActivate: [AuthGuard] }
 
 ]
 

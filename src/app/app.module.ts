@@ -19,9 +19,11 @@ import { routes } from './app.routes';
 import { MatchesComponent } from './matches/matches.component';
 import {PlayersService} from './players.service';
 import {MatchesService} from './matches.service';
+import {LeaguesService} from './leagues.service';
 
 
 import {DatepickerModule } from 'angular2-material-datepicker';
+import { LeaguesComponent } from './leagues/leagues.component';
 
 
 
@@ -42,7 +44,8 @@ export const firebaseConfig = {
     SignupComponent,
     MembersComponent,
     PlayersComponent,
-    MatchesComponent
+    MatchesComponent,
+    LeaguesComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ export const firebaseConfig = {
   providers: [
     AuthGuard,
     PlayersService,
-    MatchesService
+    MatchesService,
+    LeaguesService
   ],
   bootstrap: [
     AppComponent
