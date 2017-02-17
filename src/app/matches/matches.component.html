@@ -6,7 +6,7 @@
         <md-option *ngFor="let player of Players | async" [value]="player.$key">{{player.name}}</md-option>
       </md-select>
 
-      <md-select  placeholder="Player B" class="txt" formControlName="playerB" >
+      <md-select class="txt" placeholder="Player B" formControlName="playerB">
         <md-option *ngFor="let player of Players | async" [value]="player.$key">{{player.name}}</md-option>
       </md-select>
       <md-input type="date" formControlName="dateOfMatch" placeholder="date of the match"></md-input>

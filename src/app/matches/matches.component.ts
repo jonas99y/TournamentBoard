@@ -6,6 +6,7 @@ import { Player } from '../Shared/Model/player';
 import { Match } from '../Shared/Model/match';
 import { MatchPlayerData } from '../Shared/Model/matchPlayerData';
 import { PlayersService } from '../players.service'
+import { MatchesService } from '../matches.service'
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -13,11 +14,12 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css']
 })
+
 export class MatchesComponent implements OnInit {
 
   public Players: FirebaseListObservable<Player[]>
 
-  constructor(public af: AngularFire, private router: Router, public formBuilder: FormBuilder, private playersService: PlayersService) {
+  constructor(public af: AngularFire, private router: Router, public formBuilder: FormBuilder, private playersService: PlayersService, private matchesService: MatchesService) {
     this.Players = playersService.findAllPlayers();
     console.log("hei");
 
@@ -29,7 +31,7 @@ export class MatchesComponent implements OnInit {
       playerB: ["", Validators.required],
       dateOfMatch: [this.getCurrentDate(),],
       playerAScoreReg: ["", Validators.required],
-      playerBScoreReg: ["1", Validators.required],
+      playerBScoreReg: ["", Validators.required],
     }
   )
 
@@ -57,20 +59,22 @@ export class MatchesComponent implements OnInit {
     console.log(this.addMatchForm.value);
     let formData = this.addMatchForm.value;
     let playerA:MatchPlayerData = new MatchPlayerData(
+      formData.playerA,
       formData.playerAScoreReg,
       formData.playerAScoreReg,
       formData.playerAScoreReg,
     );
     let playerB: MatchPlayerData = new MatchPlayerData(
+      formData.playerB,
       formData.playerBScoreReg,
       formData.playerBScoreReg,
       formData.playerBScoreReg,
 
     );
     let newMatch: Match = new Match(
-    formData.date,playerA,playerB
+      formData.dateOfMatch,playerA,playerB
     )
-    console.log(newMatch);
+    this.matchesService.addMatch(newMatch);
 
   }
 }

@@ -18,6 +18,7 @@ import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
 import { MatchesComponent } from './matches/matches.component';
 import {PlayersService} from './players.service';
+import {MatchesService} from './matches.service';
 
 
 import {DatepickerModule } from 'angular2-material-datepicker';
@@ -55,7 +56,8 @@ export const firebaseConfig = {
   ],
   providers: [
     AuthGuard,
-    PlayersService
+    PlayersService,
+    MatchesService
   ],
   bootstrap: [
     AppComponent

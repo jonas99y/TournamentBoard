@@ -13,7 +13,7 @@ export class MatchesService {
 
     this.ref = fb.database().ref();
 
-    this.matchRef = fb.database().ref('match')
+    this.matchRef = fb.database().ref('matches')
 
   }
 
@@ -23,8 +23,19 @@ export class MatchesService {
   }
 
   addMatch(match: Match) {
-    this.matchRef.push(match);
+    //get a push key, this is performed localy
+    let newPushKey: string = this.matchRef.push().key;
+    let playerAKey: string = match.playerA.playerKey;
+    let playerBKey: string = match.playerB.playerKey;
 
+    //use a transaction when leagues and points get implemented
+    var updates = {};
+    updates["/matches/" + newPushKey] = match;
+    updates["/players/" + playerAKey + "/matches/" + newPushKey] = "value";
+    updates["/players/" + playerBKey + "/matches/" + newPushKey] = "value";
+
+    this.ref.update(updates);
+    console.log(updates);
   }
 
 
