@@ -7,7 +7,8 @@ export class League {
         public admins: {[userKey:string]:string},
         public matches: { [matchKey: string]: string },
         public players: {[playerKey:string]:LeaguePlayer},
-        public teams: {[teamKey:string]:LeagueTeam}
+        public teams: {[teamKey:string]:LeagueTeam},
+        public $key:string
 
 
     ) { }

@@ -3,8 +3,8 @@ export class Match{
     constructor(
         public date: string,
         public playerA: MatchPlayerData,
-        public playerB: MatchPlayerData
-       
+        public playerB: MatchPlayerData,
+        public $key:string
 
     ){}
 }

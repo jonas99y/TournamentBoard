@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PlayersService } from '../players.service';
 import { Player } from '../Shared/Model/player';
 import { FormBuilder, Validators } from '@angular/forms'
+import { AddPlayerComponent } from '../add-player/add-player.component';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -16,23 +17,12 @@ export class PlayersComponent implements OnInit {
 
   allPlayers: FirebaseListObservable<Player[]>;
 
-  public addPlayerForm = this.formBuilder.group(
-    {
-      name: ["",Validators.required]
-    }
-  );
-
-  constructor(public af: AngularFire, private router: Router, private playersService: PlayersService, public formBuilder: FormBuilder) {
+  constructor(public af: AngularFire, private router: Router, private playersService: PlayersService,) {
     this.allPlayers = playersService.findAllPlayers();
-    this.allPlayers.subscribe(snapshot => { console.log(snapshot); });
   };
 
   ngOnInit() {
   }
 
-  addPlayer(event) {
-    let player = new Player(this.addPlayerForm.value.name, null)
-    this.playersService.addPlayer(player)
-    this.addPlayerForm.value.name="";
-  }
+
 }

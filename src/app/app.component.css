@@ -1,34 +1,35 @@
 .app-toolbar-menu {
-  padding: 0 14px 0 14px;
-  color: white;
+    padding: 0 14px 0 14px;
+    color: white;
 }
 
 .app-icon-button {
-  box-shadow: none;
-  user-select: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  filter: none;
-  font-weight: normal;
-  height: auto;
-  line-height: inherit;
-  margin: 0;
-  min-width: 0;
-  padding: 0;
-  text-align: left;
-  text-decoration: none;
+    box-shadow: none;
+    user-select: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    filter: none;
+    font-weight: normal;
+    height: auto;
+    line-height: inherit;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
 }
 
-.app-content{
-padding: 20px;
-height: auto;
-
+.app-content {
+    padding: 20px;
+    height: auto;
 }
-.app-content md-card{
+
+.app-content md-card {
     margin: 20px;
 }
-.app-sidenav{
-  width: 300px;
-}
 
+.app-sidenav {
+    padding-left: 10px;
+    padding-right: 10px;
+}

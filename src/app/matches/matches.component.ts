@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms'
+import { FormBuilder, Validators } from '@angular/forms';
 import { Player } from '../Shared/Model/player';
 import { Match } from '../Shared/Model/match';
 import { MatchPlayerData } from '../Shared/Model/matchPlayerData';
-import { PlayersService } from '../players.service'
-import { MatchesService } from '../matches.service'
+import { PlayersService } from '../players.service';
+import { MatchesService } from '../matches.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -17,14 +17,7 @@ import { Observable } from 'rxjs/Observable';
 
 export class MatchesComponent implements OnInit {
 
-  public Players: FirebaseListObservable<Player[]>
-
-  constructor(public af: AngularFire, private router: Router, public formBuilder: FormBuilder, private playersService: PlayersService, private matchesService: MatchesService) {
-    this.Players = playersService.findAllPlayers();
-    console.log("hei");
-
-  }
-
+  public Players: FirebaseListObservable<Player[]>;
   public addMatchForm = this.formBuilder.group(
     {
       playerA: ["", Validators.required],
@@ -33,7 +26,21 @@ export class MatchesComponent implements OnInit {
       playerAScoreReg: ["", Validators.required],
       playerBScoreReg: ["", Validators.required],
     }
-  )
+  );
+
+  constructor(
+    public af: AngularFire,
+    private router: Router,
+    public formBuilder: FormBuilder,
+    private playersService: PlayersService,
+    private matchesService: MatchesService) {
+    this.Players = playersService.findAllPlayers();
+    // tslint:disable-next-line:quotemark
+    console.log("hei");
+
+  }
+
+
 
   private getCurrentDate(): string {
     let today = new Date();
@@ -58,7 +65,7 @@ export class MatchesComponent implements OnInit {
   addMatch(event) {
     console.log(this.addMatchForm.value);
     let formData = this.addMatchForm.value;
-    let playerA:MatchPlayerData = new MatchPlayerData(
+    let playerA: MatchPlayerData = new MatchPlayerData(
       formData.playerA,
       formData.playerAScoreReg,
       formData.playerAScoreReg,
@@ -72,7 +79,7 @@ export class MatchesComponent implements OnInit {
 
     );
     let newMatch: Match = new Match(
-      formData.dateOfMatch,playerA,playerB
+      formData.dateOfMatch, playerA, playerB, null
     )
     this.matchesService.addMatch(newMatch);
 

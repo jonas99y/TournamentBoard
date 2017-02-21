@@ -23,7 +23,13 @@ export class PlayersService {
   }
 
   addPlayer(player: Player) {
-    this.playerRef.push(player);
+    let newPushKey: string = this.playerRef.push().key;
+
+
+    let updates = {};
+    updates["/players/" + newPushKey] = player;
+
+    this.ref.update(updates);
 
   }
 

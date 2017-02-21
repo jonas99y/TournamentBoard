@@ -7,15 +7,5 @@
       </li>
     </ul>
   </md-card>
-  <md-card>
-    <form [formGroup]="addPlayerForm" (ngSubmit)="addPlayer($event)">
-      <h2>Add Player:</h2>
-      <br>
-      <md-input #name placeholder="Name" maxlength="50" formControlName="name">
-        <md-hint align="end"></md-hint>
-      </md-input>
-
-      <button md-button type="submit" class="btn btn-success">Submit</button>
-    </form>
-  </md-card>
+  <app-add-player></app-add-player>
 </div>

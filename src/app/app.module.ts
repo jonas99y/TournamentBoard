@@ -24,6 +24,8 @@ import {LeaguesService} from './leagues.service';
 
 import {DatepickerModule } from 'angular2-material-datepicker';
 import { LeaguesComponent } from './leagues/leagues.component';
+import { LeagueOverviewComponent } from './league-overview/league-overview.component';
+import { AddPlayerComponent } from './add-player/add-player.component';
 
 
 
@@ -45,7 +47,9 @@ export const firebaseConfig = {
     MembersComponent,
     PlayersComponent,
     MatchesComponent,
-    LeaguesComponent
+    LeaguesComponent,
+    LeagueOverviewComponent,
+    AddPlayerComponent
   ],
   imports: [
     BrowserModule,

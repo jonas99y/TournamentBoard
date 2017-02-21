@@ -2,7 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable, Subject } from "rxjs/Rx";
 import { Match } from "./Shared/Model/match";
 import { League } from "./Shared/Model/league";
-import { AngularFireDatabase, FirebaseListObservable, FirebaseRef } from "angularfire2";
+import { Player } from "./Shared/Model/player";
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable, FirebaseRef } from "angularfire2";
 @Injectable()
 export class LeaguesService {
 
@@ -20,6 +21,10 @@ export class LeaguesService {
 
     return <FirebaseListObservable<League[]>>this.db.list(this.leagueRef);
   }
+  findSingelLeague(leagueKey: string): FirebaseObjectObservable<League> {
+    return this.db.object(this.leagueRef + "/" + leagueKey)
+  }
+
 
   addLeague(league: League) {
     //get a push key, this is performed localy
@@ -27,12 +32,17 @@ export class LeaguesService {
     // let playerAKey: string = match.playerA.playerKey;
     // let playerBKey: string = match.playerB.playerKey;
 
+
     var updates = {};
     updates["/leagues/" + newPushKey] = league;
-   
+
 
     this.ref.update(updates);
     console.log(updates);
+  }
+  addPlayerToLeague(league: League, player: Player) {
+    var updates = {};
+    updates["/leagues/" + league.$key]
   }
 
 }
