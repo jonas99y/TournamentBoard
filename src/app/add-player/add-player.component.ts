@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { PlayersService } from '../players.service';
 import { LeaguesService } from '../leagues.service';
@@ -13,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 })
 export class AddPlayerComponent implements OnInit {
 
-  @Input('league') league: League;
+  @Input('league') league: FirebaseObjectObservable<League>;
 
   public addPlayerForm = this.formBuilder.group(
     {
@@ -32,13 +32,12 @@ export class AddPlayerComponent implements OnInit {
   };
 
   addPlayer(event) {
-    console.log(this.league);
-    let player = new Player(this.addPlayerForm.value.name, null);
-    console.log(player);
-    this.playersService.addPlayer(player);
+    const player = new Player(this.addPlayerForm.value.name, null);
+    const newPlayer: FirebaseObjectObservable<Player>= this.playersService.addPlayer(player);
     this.addPlayerForm.value.name = "";
     if (this.league != null) {
-        this.leaguesService.addPlayerToLeague(this.league,player);
+      this.leaguesService.addPlayerToLeague(this.league.$ref.key,newPlayer.$ref.key);
     }
+    console.log(player);
   }
 }

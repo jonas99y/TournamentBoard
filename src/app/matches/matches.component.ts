@@ -35,8 +35,6 @@ export class MatchesComponent implements OnInit {
     private playersService: PlayersService,
     private matchesService: MatchesService) {
     this.Players = playersService.findAllPlayers();
-    // tslint:disable-next-line:quotemark
-    console.log("hei");
 
   }
 
@@ -79,7 +77,7 @@ export class MatchesComponent implements OnInit {
 
     );
     let newMatch: Match = new Match(
-      formData.dateOfMatch, playerA, playerB, null
+      formData.dateOfMatch, playerA, playerB
     )
     this.matchesService.addMatch(newMatch);
 

@@ -3,6 +3,7 @@ import { Observable, Subject } from "rxjs/Rx";
 import { Match } from "./Shared/Model/match";
 import { League } from "./Shared/Model/league";
 import { Player } from "./Shared/Model/player";
+import { LeaguePlayer } from "./Shared/Model/leaguePlayer";
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable, FirebaseRef } from "angularfire2";
 @Injectable()
 export class LeaguesService {
@@ -40,9 +41,11 @@ export class LeaguesService {
     this.ref.update(updates);
     console.log(updates);
   }
-  addPlayerToLeague(league: League, player: Player) {
+  addPlayerToLeague(leagueKey: string, playerKey: string) {
+    const leaguePlayer: LeaguePlayer = new LeaguePlayer(0,0,true);
     var updates = {};
-    updates["/leagues/" + league.$key]
+    updates["/leagues/" + leagueKey + "/players/" + playerKey] = leaguePlayer;
+    this.ref.update(updates);
   }
 
 }

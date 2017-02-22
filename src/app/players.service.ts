@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, Subject } from "rxjs/Rx";
 import { Player } from "./Shared/Model/player";
-import { AngularFireDatabase, FirebaseListObservable, FirebaseRef } from "angularfire2";
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable, FirebaseRef } from "angularfire2";
 
 @Injectable()
 export class PlayersService {
@@ -22,7 +22,15 @@ export class PlayersService {
     return <FirebaseListObservable<Player[]>>this.db.list(this.playerRef);
   }
 
-  addPlayer(player: Player) {
+  findPlayerAfterKey(key: string): FirebaseObjectObservable<Player> {
+    let foundPlayer: FirebaseObjectObservable<Player> = <FirebaseObjectObservable<Player>>this.db.object(this.playerRef + "/" + key);
+    console.log("fond a player");
+    console.log(foundPlayer);
+
+    return foundPlayer;
+  }
+
+  addPlayer(player: Player): FirebaseObjectObservable<Player> {
     let newPushKey: string = this.playerRef.push().key;
 
 
@@ -30,6 +38,7 @@ export class PlayersService {
     updates["/players/" + newPushKey] = player;
 
     this.ref.update(updates);
+   return this.findPlayerAfterKey(newPushKey);
 
   }
 
