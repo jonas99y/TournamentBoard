@@ -1,11 +1,11 @@
 <div class="container">
     <md-card>
         <h2>All Players:</h2>
-        <ul *ngFor="let player of allPlayers | async">
-            <li>
-                {{player.$key}}
-            </li>
-        </ul>
+        <app-list-players [players]="allPlayers"> </app-list-players>
     </md-card>
-    <app-add-player></app-add-player>
+    <br>
+    <md-card>
+        <h2>Add a new Player: </h2>
+        <app-add-player></app-add-player>
+    </md-card>
 </div>
