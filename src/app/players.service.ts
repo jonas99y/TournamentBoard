@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable, Subject } from "rxjs/Rx";
+import { Observable, Subject, Subscriber } from "rxjs/Rx";
 import { Player } from "./Shared/Model/player";
+import { League } from "./Shared/Model/league";
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable, FirebaseRef } from "angularfire2";
 
 @Injectable()
@@ -24,12 +25,27 @@ export class PlayersService {
 
   findPlayerAfterKey(key: string): FirebaseObjectObservable<Player> {
     let foundPlayer: FirebaseObjectObservable<Player> = <FirebaseObjectObservable<Player>>this.db.object(this.playerRef + "/" + key);
-    console.log("fond a player");
-    console.log(foundPlayer);
+    // console.log("fond a player");
+    // console.log(foundPlayer);
 
     return foundPlayer;
   }
-
+  findAllPlayersInLeague(league: League): Observable<Player> {
+    console.log("Hei");
+    console.log(league);
+    // console.log(league.players);
+    let players: Player[] = new Array <Player>();
+    let player;
+    for (player in league.players) {
+      // console.log(player);
+      this.findPlayerAfterKey(player).subscribe(x=>players.push(x))
+      
+    }   
+    let obs: Observable<Player> = Observable.from(players);
+    console.log(players);
+    console.log(obs);
+    return obs;
+  }
   addPlayer(player: Player): FirebaseObjectObservable<Player> {
     let newPushKey: string = this.playerRef.push().key;
 
@@ -38,7 +54,7 @@ export class PlayersService {
     updates["/players/" + newPushKey] = player;
 
     this.ref.update(updates);
-   return this.findPlayerAfterKey(newPushKey);
+    return this.findPlayerAfterKey(newPushKey);
 
   }
 

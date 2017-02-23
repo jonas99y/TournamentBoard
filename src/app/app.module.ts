@@ -52,7 +52,7 @@ export const firebaseConfig = {
     LeagueOverviewComponent,
     AddPlayerComponent,
     ListPlayersComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     FormsModule,

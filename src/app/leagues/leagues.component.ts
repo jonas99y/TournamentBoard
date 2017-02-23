@@ -41,7 +41,7 @@ export class LeaguesComponent implements OnInit {
       null);
 
 
-    console.log(newLeague);
+    // console.log(newLeague);
     this.leaguesService.addLeague(newLeague);
 
 

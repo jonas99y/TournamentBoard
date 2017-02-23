@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable, Subject } from "rxjs/Rx";
 import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 import { Player } from '../shared/model/player';
+
 
 @Component({
   selector: 'app-list-players',
@@ -10,7 +12,7 @@ import { Player } from '../shared/model/player';
 export class ListPlayersComponent implements OnInit {
 
 
-  @Input('players') players: FirebaseListObservable<Player[]>;
+  @Input('players') players: Observable<Player>;
 
 
   constructor() { }

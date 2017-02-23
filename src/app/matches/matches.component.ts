@@ -61,7 +61,7 @@ export class MatchesComponent implements OnInit {
   }
 
   addMatch(event) {
-    console.log(this.addMatchForm.value);
+    // console.log(this.addMatchForm.value);
     let formData = this.addMatchForm.value;
     let playerA: MatchPlayerData = new MatchPlayerData(
       formData.playerA,

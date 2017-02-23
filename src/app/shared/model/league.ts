@@ -9,6 +9,5 @@ export class League {
         public players: {[playerKey:string]:LeaguePlayer},
         public teams: {[teamKey:string]:LeagueTeam}
 
-
     ) { }
 }

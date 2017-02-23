@@ -39,7 +39,7 @@ export class LeaguesService {
 
 
     this.ref.update(updates);
-    console.log(updates);
+    // console.log(updates);
   }
   addPlayerToLeague(leagueKey: string, playerKey: string) {
     const leaguePlayer: LeaguePlayer = new LeaguePlayer(0,0,true);
