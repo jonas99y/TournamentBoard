@@ -1,7 +1,7 @@
 <div class="container">
     <md-card>
         <h2>All Players:</h2>
-        <app-list-players [players]="allPlayers"> </app-list-players>
+        <app-list-players [players]="allPlayers|async"> </app-list-players>
     </md-card>
     <br>
     <md-card>

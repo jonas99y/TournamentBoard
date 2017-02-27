@@ -12,7 +12,7 @@ import { Player } from '../shared/model/player';
 export class ListPlayersComponent implements OnInit {
 
 
-  @Input('players') players: Observable<Player>;
+  @Input('players') players: Array<Player>;
 
 
   constructor() { }

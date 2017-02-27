@@ -4,5 +4,5 @@
 <h2>Matches:</h2>
 
 <h2>Players:</h2>
-<app-list-players [players]="Players"></app-list-players>
+<app-list-players [players]="Players | async2"></app-list-players>
 <app-add-player [league]="CurrentLeague"> </app-add-player>
