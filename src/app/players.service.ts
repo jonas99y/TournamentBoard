@@ -14,7 +14,7 @@ export class PlayersService {
 
     this.ref = fb.database().ref();
 
-    this.playerRef = fb.database().ref('players')
+    this.playerRef = fb.database().ref('players');
 
   }
 
@@ -27,26 +27,18 @@ export class PlayersService {
 
   findPlayerAfterKey(key: string): FirebaseObjectObservable<Player> {
     let foundPlayer: FirebaseObjectObservable<Player> = <FirebaseObjectObservable<Player>>this.db.object(this.playerRef + "/" + key);
-    // console.log("fond a player");
-    // console.log(foundPlayer);
-
     return foundPlayer;
   }
   findAllPlayersInLeague(league: League): Array<FirebaseObjectObservable<Player>> {
-    // console.log(league.players);
     let players: Array<FirebaseObjectObservable<Player>> = new Array<FirebaseObjectObservable<Player>>();
     let player;
     for (player in league.players) {
-      // console.log(players);
-      
       players.push(this.findPlayerAfterKey(player));
     }
     return players;
   }
   addPlayer(player: Player): FirebaseObjectObservable<Player> {
     let newPushKey: string = this.playerRef.push().key;
-
-
     let updates = {};
     updates["/players/" + newPushKey] = player;
 

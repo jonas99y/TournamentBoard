@@ -38,8 +38,6 @@ export class MatchesComponent implements OnInit {
 
   }
 
-
-
   private getCurrentDate(): string {
     let today = new Date();
     let dd = today.getDate();
@@ -61,7 +59,6 @@ export class MatchesComponent implements OnInit {
   }
 
   addMatch(event) {
-    // console.log(this.addMatchForm.value);
     let formData = this.addMatchForm.value;
     let playerA: MatchPlayerData = new MatchPlayerData(
       formData.playerA,

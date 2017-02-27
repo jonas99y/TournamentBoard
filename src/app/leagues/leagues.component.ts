@@ -19,9 +19,9 @@ export class LeaguesComponent implements OnInit {
       parentLeague: [""]
 
     }
-  )
+  );
 
-  public Leagues: FirebaseListObservable<League[]>
+  public Leagues: FirebaseListObservable<League[]>;
   constructor(private leaguesService: LeaguesService, private formBuilder: FormBuilder, public af: AngularFire) {
 
     this.Leagues = this.leaguesService.findAllLeagues();
@@ -35,13 +35,11 @@ export class LeaguesComponent implements OnInit {
     let adminKey = this.af.auth.getAuth().uid;
     let newLeague: League = new League(
       formdata.leagueName,
-      { [adminKey]:"value" },
+      { [adminKey]: "value" },
       null,
       null,
       null);
 
-
-    // console.log(newLeague);
     this.leaguesService.addLeague(newLeague);
 
 

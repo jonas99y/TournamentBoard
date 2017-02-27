@@ -30,19 +30,12 @@ export class LeaguesService {
   addLeague(league: League) {
     //get a push key, this is performed localy
     let newPushKey: string = this.leagueRef.push().key;
-    // let playerAKey: string = match.playerA.playerKey;
-    // let playerBKey: string = match.playerB.playerKey;
-
-
     var updates = {};
     updates["/leagues/" + newPushKey] = league;
-
-
     this.ref.update(updates);
-    // console.log(updates);
   }
   addPlayerToLeague(leagueKey: string, playerKey: string) {
-    const leaguePlayer: LeaguePlayer = new LeaguePlayer(0,0,true);
+    const leaguePlayer: LeaguePlayer = new LeaguePlayer(0, 0, true);
     var updates = {};
     updates["/leagues/" + leagueKey + "/players/" + playerKey] = leaguePlayer;
     this.ref.update(updates);

@@ -26,7 +26,7 @@ export class LeagueOverviewComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.CurrentLeague = this.leaguesService.findSingelLeague(params['leagueKey']);
     });
-    this.CurrentLeague.subscribe(x => {this.Players = this.playersService.findAllPlayersInLeague(x), console.log(this.Players)});
+    this.CurrentLeague.subscribe(x => { this.Players = this.playersService.findAllPlayersInLeague(x) });
   }
 
   ngOnDestroy() {
