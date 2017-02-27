@@ -20,7 +20,9 @@ export class PlayersService {
 
   findAllPlayers(): FirebaseListObservable<Player[]> {
 
-    return <FirebaseListObservable<Player[]>>this.db.list(this.playerRef);
+    const players: FirebaseListObservable<Player[]> =
+      <FirebaseListObservable<Player[]>>this.db.list(this.playerRef);
+    return players;
   }
 
   findPlayerAfterKey(key: string): FirebaseObjectObservable<Player> {
@@ -30,21 +32,16 @@ export class PlayersService {
 
     return foundPlayer;
   }
-  findAllPlayersInLeague(league: League): Observable<Player> {
-    console.log("Hei");
-    console.log(league);
+  findAllPlayersInLeague(league: League): Array<FirebaseObjectObservable<Player>> {
     // console.log(league.players);
-    let players: Player[] = new Array <Player>();
+    let players: Array<FirebaseObjectObservable<Player>> = new Array<FirebaseObjectObservable<Player>>();
     let player;
     for (player in league.players) {
-      // console.log(player);
-      this.findPlayerAfterKey(player).subscribe(x=>players.push(x))
+      // console.log(players);
       
-    }   
-    let obs: Observable<Player> = Observable.from(players);
-    console.log(players);
-    console.log(obs);
-    return obs;
+      players.push(this.findPlayerAfterKey(player));
+    }
+    return players;
   }
   addPlayer(player: Player): FirebaseObjectObservable<Player> {
     let newPushKey: string = this.playerRef.push().key;
