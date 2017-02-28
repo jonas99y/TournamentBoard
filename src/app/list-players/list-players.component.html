@@ -1,5 +1,5 @@
 <ul *ngFor="let player of players">
     <li>
-        {{player.name}}
+        <a routerLink="/player-overview/{{player.$key}}">{{player.name}}</a>
     </li>
 </ul>

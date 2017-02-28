@@ -30,6 +30,7 @@ import { AddPlayerComponent } from './add-player/add-player.component';
 import { ListPlayersComponent } from './list-players/list-players.component';
 import { Async2Pipe } from './async2.pipe';
 import { ListLeaguesComponent } from './list-leagues/list-leagues.component';
+import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 
 
 
@@ -56,7 +57,8 @@ export const firebaseConfig = {
     AddPlayerComponent,
     ListPlayersComponent,
     Async2Pipe,
-    ListLeaguesComponent
+    ListLeaguesComponent,
+    PlayerOverviewComponent
   ],
   imports: [
     BrowserModule,
