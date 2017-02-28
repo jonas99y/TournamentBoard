@@ -1,16 +1,22 @@
 <div class="form-container">
-  <md-card>
-    <form [formGroup]="addLeagueForm" (ngSubmit)="addLeague($event)">
+    <md-card>
+        <h2> All Leagues </h2>
+        <app-list-leagues [leagues]="Leagues | async">
+        </app-list-leagues>
+    </md-card>
+    <br>
+    <md-card>
+        <form [formGroup]="addLeagueForm" (ngSubmit)="addLeague($event)">
 
-      <md-input placeholder="League name" maxlength="50" formControlName="leagueName">
-        <md-hint align="end"></md-hint>
-      </md-input>
+            <md-input placeholder="League name" maxlength="50" formControlName="leagueName">
+                <md-hint align="end"></md-hint>
+            </md-input>
 
-      <md-select class="txt" placeholder="Parent League" formControlName="parentLeague">
-        <md-option *ngFor="let league of Leagues | async" [value]="league.$key">{{league.name}}</md-option>
-      </md-select>
+            <md-select class="txt" placeholder="Parent League" formControlName="parentLeague">
+                <md-option *ngFor="let league of Leagues | async" [value]="league.$key">{{league.name}}</md-option>
+            </md-select>
 
-      <button md-button type="submit" class="basic-btn">Add a league</button>
-    </form>
-  </md-card>
+            <button md-button type="submit" class="basic-btn">Add a league</button>
+        </form>
+    </md-card>
 </div>

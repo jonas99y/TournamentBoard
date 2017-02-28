@@ -1,0 +1,5 @@
+<ul *ngFor="let league of leagues">
+    <li>
+        <a routerLink="/league-overview/{{league.$key}}">{{league.name}}</a>
+    </li>
+</ul>
