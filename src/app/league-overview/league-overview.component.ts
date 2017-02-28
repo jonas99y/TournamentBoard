@@ -33,4 +33,9 @@ export class LeagueOverviewComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
+  handlePlayerAdded(player:FirebaseObjectObservable<Player>)
+  {
+    this.leaguesService.addPlayerToLeague(this.CurrentLeague.$ref.key, player.$ref.key);
+  }
+
 }
