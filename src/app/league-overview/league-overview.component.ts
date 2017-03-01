@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from "rxjs/Rx";
 import { League } from '../shared/model/league';
 import { Player } from '../shared/model/player';
+import { Match } from '../shared/model/match';
 import { LeaguesService } from '../leagues.service';
 import { PlayersService } from '../players.service';
 import { FirebaseObjectObservable } from 'angularfire2';
@@ -36,6 +37,10 @@ export class LeagueOverviewComponent implements OnInit {
   handlePlayerAdded(player:FirebaseObjectObservable<Player>)
   {
     this.leaguesService.addPlayerToLeague(this.CurrentLeague.$ref.key, player.$ref.key);
+  }
+  handleMatchAdded(match: FirebaseObjectObservable<Match>)
+  {
+      //may handle something
   }
 
 }

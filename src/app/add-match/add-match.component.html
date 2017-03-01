@@ -1,0 +1,21 @@
+<form [formGroup]="addMatchForm" (ngSubmit)="addMatch($event)">
+
+    <md-select class="txt" placeholder="Player A" formControlName="playerA">
+        <md-option *ngFor="let player of players" [value]="player.$key">{{player.name}}</md-option>
+    </md-select>
+
+    <md-select class="txt" placeholder="Player B" formControlName="playerB">
+        <md-option *ngFor="let player of players" [value]="player.$key">{{player.name}}</md-option>
+    </md-select>
+    <md-input type="date" formControlName="dateOfMatch" placeholder="date of the match"></md-input>
+    <h3>Regular Time</h3>
+    <md-input placeholder="A" maxlength="2" formControlName="playerAScoreReg">
+        <md-hint align="end"></md-hint>
+    </md-input>
+    <md-input placeholder="B" maxlength="2" formControlName="playerBScoreReg">
+        <md-hint align="end"></md-hint>
+    </md-input>
+
+
+    <button md-button type="submit" class="basic-btn">Add a match</button>
+</form>

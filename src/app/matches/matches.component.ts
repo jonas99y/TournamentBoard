@@ -18,15 +18,7 @@ import { Observable } from 'rxjs/Observable';
 export class MatchesComponent implements OnInit {
 
   public Players: FirebaseListObservable<Player[]>;
-  public addMatchForm = this.formBuilder.group(
-    {
-      playerA: ["", Validators.required],
-      playerB: ["", Validators.required],
-      dateOfMatch: [this.getCurrentDate(),],
-      playerAScoreReg: ["", Validators.required],
-      playerBScoreReg: ["", Validators.required],
-    }
-  );
+  
 
   constructor(
     public af: AngularFire,
@@ -38,45 +30,10 @@ export class MatchesComponent implements OnInit {
 
   }
 
-  private getCurrentDate(): string {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1; //January is 0!
-
-    let dds: string = dd + "";
-    let mms: string = mm + "";
-    let yyyy = today.getFullYear();
-    if (dd < 10) {
-      dds = '0' + dd;
-    }
-    if (mm < 10) {
-      mms = '0' + mm;
-    }
-    return yyyy + '-' + mms + '-' + dds;
-  }
+ 
 
   ngOnInit() {
   }
 
-  addMatch(event) {
-    let formData = this.addMatchForm.value;
-    let playerA: MatchPlayerData = new MatchPlayerData(
-      formData.playerA,
-      formData.playerAScoreReg,
-      formData.playerAScoreReg,
-      formData.playerAScoreReg,
-    );
-    let playerB: MatchPlayerData = new MatchPlayerData(
-      formData.playerB,
-      formData.playerBScoreReg,
-      formData.playerBScoreReg,
-      formData.playerBScoreReg,
-
-    );
-    let newMatch: Match = new Match(
-      formData.dateOfMatch, playerA, playerB
-    )
-    this.matchesService.addMatch(newMatch);
-
-  }
+  
 }

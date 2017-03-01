@@ -5,10 +5,11 @@
 <br>
 <md-card>
     <h2>Matches:</h2>
+    <app-add-match [league]="CurrentLeague" [players]="Players | async2" (matchAdded)="handleMatchAdded($event)"> </app-add-match>
 </md-card>
 <br>
 <md-card>
     <h2>Players:</h2>
     <app-list-players [players]="Players | async2"></app-list-players>
-    <app-add-player [league]="CurrentLeague" (playerAdded) ="handlePlayerAdded($event)"> </app-add-player>
+    <app-add-player [league]="CurrentLeague" (playerAdded)="handlePlayerAdded($event)"> </app-add-player>
 </md-card>

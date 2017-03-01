@@ -1,7 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, Subject } from "rxjs/Rx";
 import { Match } from "./Shared/Model/match";
-import { AngularFireDatabase, FirebaseListObservable, FirebaseRef } from "angularfire2";
+import { MatchPlayerData } from './Shared/Model/matchPlayerData';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable, FirebaseRef } from "angularfire2";
 
 @Injectable()
 export class MatchesService {
@@ -22,7 +23,11 @@ export class MatchesService {
     return <FirebaseListObservable<Match[]>>this.db.list(this.matchRef);
   }
 
-  addMatch(match: Match) {
+  findSingleMatch(matchKey:string): FirebaseObjectObservable<Match>{
+    return this.db.object(this.matchRef.child(matchKey));
+  }
+
+  addMatch(match: Match):FirebaseObjectObservable<Match> {
     //get a push key, this is performed localy
     let newPushKey: string = this.matchRef.push().key;
     let playerAKey: string = match.playerA.playerKey;
@@ -35,8 +40,20 @@ export class MatchesService {
     updates["/players/" + playerBKey + "/matches/" + newPushKey] = "value";
 
     this.ref.update(updates);
-    console.log(updates);
+    return this.findSingleMatch(newPushKey);
   }
 
+  getPoints(pointsA: MatchPlayerData, pointsB: MatchPlayerData): [number, number] {
+    let tuple: [number, number];
+    if (pointsA.ScoreReg > pointsB.ScoreReg)
+      tuple = [3, 0];
+    else if (pointsA.ScoreReg < pointsB.ScoreReg)
+      tuple = [0, 3];
+    else if (pointsA.ScoreReg == pointsB.ScoreReg)
+      tuple = [1, 1];
+
+    return tuple;
+
+  }
 
 }
