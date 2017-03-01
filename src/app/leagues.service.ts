@@ -53,6 +53,8 @@ export class LeaguesService {
     this.leagueRef.child(leagueKey).transaction(t => {
       t.players[match.playerA.playerKey].points += tuple[0];
       t.players[match.playerB.playerKey].points += tuple[1];
+      t.players[match.playerA.playerKey].matchesCount ++;
+      t.players[match.playerB.playerKey].matchesCount ++;
       return t;
     });
     //match to league/matches
