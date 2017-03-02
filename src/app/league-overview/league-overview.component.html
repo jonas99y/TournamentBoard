@@ -13,3 +13,8 @@
     <app-list-players [players]="Players | async2"></app-list-players>
     <app-add-player [league]="CurrentLeague" (playerAdded)="handlePlayerAdded($event)"> </app-add-player>
 </md-card>
+<br>
+<md-card>
+    <app-player-score-table>
+    </app-player-score-table>
+</md-card>

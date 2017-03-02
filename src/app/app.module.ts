@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AsyncPipe} from '@angular/common';
+import { AgGridModule } from 'ag-grid-angular/main';
+import { AsyncPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
@@ -32,16 +33,17 @@ import { Async2Pipe } from './async2.pipe';
 import { ListLeaguesComponent } from './list-leagues/list-leagues.component';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { AddMatchComponent } from './add-match/add-match.component';
+import { PlayerScoreTableComponent } from './player-score-table/player-score-table.component';
 
 
 
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBxCfbYoG0PeGT78XxiQlB8NFjMsQYpZus",
-  authDomain: "tournamentboard-ef914.firebaseapp.com",
-  databaseURL: "https://tournamentboard-ef914.firebaseio.com",
-  storageBucket: "tournamentboard-ef914.appspot.com",
-  messagingSenderId: "1028458045785"
+  apiKey: 'AIzaSyBxCfbYoG0PeGT78XxiQlB8NFjMsQYpZus',
+  authDomain: 'tournamentboard-ef914.firebaseapp.com',
+  databaseURL: 'https://tournamentboard-ef914.firebaseio.com',
+  storageBucket: 'tournamentboard-ef914.appspot.com',
+  messagingSenderId: '1028458045785'
 };
 
 @NgModule({
@@ -60,7 +62,8 @@ export const firebaseConfig = {
     Async2Pipe,
     ListLeaguesComponent,
     PlayerOverviewComponent,
-    AddMatchComponent
+    AddMatchComponent,
+    PlayerScoreTableComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     routes,
     DatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgGridModule
   ],
   providers: [
     AuthGuard,
