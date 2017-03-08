@@ -1,3 +1,38 @@
-<div style="height: 200px;">
+<div>
+    <smd-datatable [models]="tableData" [paginated]="true" [paginatorRanges]="[10, 25, 50, 100]" [responsive]="responsive">
 
+        <smd-datatable-header [enableFilter]="true" filterLabel="Filter">
+            <!--<smd-datatable-action-button (onClick)="addSample($event)" label="Add"></smd-datatable-action-button>-->
+
+            <!--<smd-datatable-contextual-button (onClick)="editSample($event)" icon="edit" [minimunSelected]="1" [maxSelected]="1" mdTooltip="Edit the selected element"></smd-datatable-contextual-button>-->
+            <!--<smd-datatable-contextual-button (onClick)="removeSample($event)" icon="delete" [minimunSelected]="1" mdTooltip="Delete the element"></smd-datatable-contextual-button>-->
+            <smd-datatable-contextual-button icon="filter_list" mdTooltip="Open a dialog for filtering?"></smd-datatable-contextual-button>
+        </smd-datatable-header>
+
+        <smd-datatable-column title="Rnk." field="rank" sortable="true" numeric="true" titleTooltip="The rank"></smd-datatable-column>
+
+        <smd-datatable-column title="Name" field="name" sortable="true" titleTooltip="The name"></smd-datatable-column>
+
+        <smd-datatable-column title="Points" field="points" sortable="true" numeric="true" titleTooltip="Points"></smd-datatable-column>
+
+        <smd-datatable-column title="Matches" field="matches" sortable="true" numeric="true" titleTooltip="Points"></smd-datatable-column>
+
+        <smd-datatable-column title="Points per Match" field="pointsPerMatch" sortable="true" numeric="true" titleTooltip="Points"></smd-datatable-column>
+
+
+        <!--
+        <smd-datatable-column title="Birth Date" field="birthDate" sortable="true" [sortFn]="_sortByBirthDate" [filterFn]="_filterByBirthDate">
+            <template let-model="data">
+                {{model.birthDate | date:'dd/MM/yyyy'}}
+            </template>
+        </smd-datatable-column>-->
+
+        <!--<smd-datatable-column title="Avatar" field="avatar" titleTooltip="User Avatar">
+            <template let-model="data">
+                <md-icon>{{model.avatar}}</md-icon>
+            </template>
+        </smd-datatable-column>-->
+
+        <!--<smd-datatable-column title="Comment" field="comment" titleTooltip="User comment" editable="true" editablePlaceholder="Add a comment" (onFieldChange)="fieldChanged($event)"></smd-datatable-column>-->
+    </smd-datatable>
 </div>

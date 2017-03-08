@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TableDataEntity } from '../shared/model/tableDataEntity';
 @Component({
   selector: 'app-player-score-table',
   templateUrl: './player-score-table.component.html',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerScoreTableComponent implements OnInit {
 
+
+  @Input('tableData') tableData: Array<TableDataEntity>;
 
   ngOnInit() {
   }

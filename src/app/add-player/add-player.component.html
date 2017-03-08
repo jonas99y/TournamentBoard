@@ -1,7 +1,8 @@
 <form [formGroup]="addPlayerForm" (ngSubmit)="addPlayer($event)">
-    <md-input #name placeholder="Name" maxlength="50" formControlName="name">
+    <md-input-container>
+        <input mdInput #name placeholder="Name" maxlength="50" formControlName="name" />
         <md-hint align="end"></md-hint>
-    </md-input>
 
+    </md-input-container>
     <button md-button type="submit" class="btn btn-success">Submit</button>
 </form>

@@ -8,10 +8,11 @@
     <md-card>
         <form [formGroup]="addLeagueForm" (ngSubmit)="addLeague($event)">
 
-            <md-input placeholder="League name" maxlength="50" formControlName="leagueName">
+            <md-input-container>
+                <input mdInput placeholder="League name" maxlength="50" formControlName="leagueName" />
                 <md-hint align="end"></md-hint>
-            </md-input>
 
+            </md-input-container>
             <md-select class="txt" placeholder="Parent League" formControlName="parentLeague">
                 <md-option *ngFor="let league of Leagues | async" [value]="league.$key">{{league.name}}</md-option>
             </md-select>
