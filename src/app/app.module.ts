@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AgGridModule } from 'ag-grid-angular/main';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -34,6 +33,7 @@ import { ListLeaguesComponent } from './list-leagues/list-leagues.component';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { AddMatchComponent } from './add-match/add-match.component';
 import { PlayerScoreTableComponent } from './player-score-table/player-score-table.component';
+
 
 
 
@@ -73,8 +73,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     routes,
     DatepickerModule,
-    ReactiveFormsModule,
-    AgGridModule
+    ReactiveFormsModule
   ],
   providers: [
     AuthGuard,
