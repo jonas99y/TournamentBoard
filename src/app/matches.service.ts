@@ -23,11 +23,11 @@ export class MatchesService {
     return <FirebaseListObservable<Match[]>>this.db.list(this.matchRef);
   }
 
-  findSingleMatch(matchKey:string): FirebaseObjectObservable<Match>{
+  findSingleMatch(matchKey: string): FirebaseObjectObservable<Match> {
     return this.db.object(this.matchRef.child(matchKey));
   }
 
-  addMatch(match: Match):FirebaseObjectObservable<Match> {
+  addMatch(match: Match): FirebaseObjectObservable<Match> {
     //get a push key, this is performed localy
     let newPushKey: string = this.matchRef.push().key;
     let playerAKey: string = match.playerA.playerKey;
@@ -49,9 +49,18 @@ export class MatchesService {
       tuple = [3, 0];
     else if (pointsA.ScoreReg < pointsB.ScoreReg)
       tuple = [0, 3];
-    else if (pointsA.ScoreReg == pointsB.ScoreReg)
+    else if (pointsA.ScoreOver > pointsB.ScoreOver)
+      tuple = [2, 0];
+    else if (pointsB.ScoreOver > pointsA.ScoreOver)
+      tuple = [0, 2];
+    else if (pointsA.ScorePenalties > pointsB.ScorePenalties)
+      tuple = [2, 0];
+    else if (pointsA.ScorePenalties < pointsB.ScorePenalties)
+      tuple = [0, 2];
+    else
       tuple = [1, 1];
 
+    console.log(tuple);
     return tuple;
 
   }

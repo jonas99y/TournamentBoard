@@ -13,15 +13,19 @@ export class ScoreTableService {
     const entities: Array<TableDataEntity> = []
     console.log(ref);
     if (ref.key == "players") {
-      this.db.list(ref).subscribe(x => x.forEach(y => {
-        const entity = new TableDataEntity();
-        entity.matches = y.matchesCount;
-        entity.points = y.points;
-        this.playersService.findPlayerAfterKey(y.$key).subscribe(z => entity.name = z.name);
+      this.db.list(ref).subscribe(x => {
+        entities.splice(0);
+        console.log(entities);
+        x.forEach(y => {
+          const entity = new TableDataEntity();
+          entity.matches = y.matchesCount;
+          entity.points = y.points;
+          this.playersService.findPlayerAfterKey(y.$key).subscribe(z => entity.name = z.name);
 
-        entities.push(entity);
-      }
-      ));
+          entities.push(entity);
+        }
+        );
+      });
     }
 
     return entities;

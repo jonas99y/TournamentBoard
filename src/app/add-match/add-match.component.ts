@@ -27,7 +27,11 @@ export class AddMatchComponent implements OnInit {
       playerB: ["", Validators.required],
       dateOfMatch: [this.getCurrentDate(),],
       playerAScoreReg: ["", Validators.required],
-      playerBScoreReg: ["", Validators.required],
+      playerBScoreReg: ["", Validators.required], 
+      playerAScoreOvertime: ["", Validators.required],
+      playerBScoreOvertime: ["", Validators.required],
+      playerAScorePenalties: ["", Validators.required],
+      playerBScorePenalties: ["", Validators.required],
     }
   );
 
@@ -43,14 +47,14 @@ export class AddMatchComponent implements OnInit {
     let playerA: MatchPlayerData = new MatchPlayerData(
       formData.playerA,
       formData.playerAScoreReg,
-      formData.playerAScoreReg,
-      formData.playerAScoreReg,
+      formData.playerAScoreOvertime,
+      formData.playerAScorePenalties,
     );
     let playerB: MatchPlayerData = new MatchPlayerData(
       formData.playerB,
       formData.playerBScoreReg,
-      formData.playerBScoreReg,
-      formData.playerBScoreReg,
+      formData.playerBScoreOvertime,
+      formData.playerBScorePenalties,
 
     );
     let newMatch: Match = new Match(

@@ -1,0 +1,17 @@
+@import "~@angular/material/core/theming/all-theme";
+@import "../all-theme";
+
+// Define a theme.
+$primary: mat-palette($mat-deep-purple);
+$accent:  mat-palette($mat-amber, A200, A100, A400);
+
+$theme: mat-light-theme($primary, $accent);
+
+// Include all theme styles for the components.
+@include angular-material-theme($theme);
+@include smd-material-theme($theme);
+
+$background: map-get($theme, background);
+.smd-content {
+  background-color: mat-color($background, background);
+}

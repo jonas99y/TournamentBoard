@@ -14,7 +14,7 @@ import { AddPlayerComponent } from '../add-player/add-player.component';
 @Component({
   selector: 'app-league-overview',
   templateUrl: './league-overview.component.html',
-  styleUrls: ['./league-overview.component.css']
+  styleUrls: ['./league-overview.component.scss']
 })
 export class LeagueOverviewComponent implements OnInit {
 

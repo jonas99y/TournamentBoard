@@ -21,11 +21,11 @@ import {
     OnInit,
     OnDestroy,
     ChangeDetectorRef
-} from "@angular/core";
+} from '@angular/core';
 // import {isNullOrUndefined} from "util";
-import {SmdPaginatorComponent} from "../smd-paginator/paginator.component";
-import {Subscription} from "rxjs/Subscription";
-import {MdDialogRef, MdDialog, MdDialogConfig} from '@angular/material';
+import { SmdPaginatorComponent } from '../smd-paginator/paginator.component';
+import { Subscription } from 'rxjs/Subscription';
+import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
 
 let columnIds = 0;
@@ -34,12 +34,12 @@ export class SmdDataRowModel {
     originalOrder?: number;
 
     constructor(public model: any,
-                public checked?: boolean) {
+        public checked?: boolean) {
     }
 }
 
 @Component({
-    selector: "smd-change-value-dialog",
+    selector: 'smd-change-value-dialog',
     template: `
         <h1 *ngIf="title" md-dialog-title>{{title}}</h1>
         <md-dialog-content>
@@ -109,7 +109,7 @@ export class SmdDataTableCellComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-    selector: "[smd-datatable-row]",
+    selector: '[smd-datatable-row]',
     template: `
         <td *ngIf="renderCheckbox" class="smd-datatable-body-checkbox">
             <div class="smd-checkbox">
@@ -136,7 +136,7 @@ export class SmdDataTableRowComponent {
     @Input() renderCheckbox: boolean;
     @Input() columns: SmdDataTableColumnComponent[];
 
-    constructor(@Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable, private dialog: MdDialog, private viewContainerRef: ViewContainerRef) {
+    constructor( @Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable, private dialog: MdDialog, private viewContainerRef: ViewContainerRef) {
     }
 
     _onClick(column: SmdDataTableColumnComponent, model: any) {
@@ -171,7 +171,7 @@ export class SmdDataTableRowComponent {
 }
 
 @Component({
-    selector: "smd-datatable-column",
+    selector: 'smd-datatable-column',
     template: `
         <ng-content select="template"></ng-content>
         <template #internalTemplate *ngIf="!_template" let-model="data">
@@ -188,8 +188,8 @@ export class SmdDataTableColumnComponent implements OnInit {
     @Input() field: string;
     @Input() numeric: boolean = false;
     @Input() sortable: boolean = false;
-    @Input() sortFn: (a:any, b:any, sortDir: string) => number;
-    @Input() filterFn: (a:any, text: string) => boolean;
+    @Input() sortFn: (a: any, b: any, sortDir: string) => number;
+    @Input() filterFn: (a: any, text: string) => boolean;
     @Input() editable: boolean = false;
     @Input() editablePlaceholder: string;
 
@@ -202,7 +202,7 @@ export class SmdDataTableColumnComponent implements OnInit {
         return this._customTemplate ? this._customTemplate : this._internalTemplate;
     }
 
-    get hasCustomTemplate():boolean {
+    get hasCustomTemplate(): boolean {
         return !!this._customTemplate;
     }
 
@@ -224,7 +224,7 @@ export class SmdDataTableColumnComponent implements OnInit {
 }
 
 @Component({
-    selector: "smd-datatable-action-button",
+    selector: 'smd-datatable-action-button',
     template: `
         <button md-button
                 color="primary"
@@ -238,7 +238,7 @@ export class SmdDatatableActionButton {
     @Input() label: string;
     @Output() onClick: EventEmitter<void> = new EventEmitter<void>();
 
-    constructor(@Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable) {
+    constructor( @Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable) {
     }
 
     _onButtonClick(event: Event) {
@@ -251,7 +251,7 @@ export class SmdDatatableActionButton {
 }
 
 @Component({
-    selector: "smd-datatable-contextual-button",
+    selector: 'smd-datatable-contextual-button',
     template: `
         <button md-icon-button
                 *ngIf="_checkButtonIsVisible()"
@@ -266,7 +266,7 @@ export class SmdContextualDatatableButton {
     @Input() maxSelected: number = -1;
     @Output() onClick: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-    constructor(@Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable) {
+    constructor( @Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable) {
     }
 
     _onButtonClick(event: Event) {
@@ -286,7 +286,7 @@ export class SmdContextualDatatableButton {
 }
 
 @Component({
-    selector: "smd-datatable-header",
+    selector: 'smd-datatable-header',
     template: `
         <div>
             <span *ngIf="title && !_hasRowsSelected()">{{title}}</span>        
@@ -315,13 +315,13 @@ export class SmdDatatableHeader implements AfterContentInit, OnDestroy {
 
     @Input() title: string = null;
     @Input() enableFilter: boolean = false;
-    @Input() filterLabel: string = "Filter";
+    @Input() filterLabel: string = 'Filter';
     @Input() filterDelay: number = 500;
 
     @ContentChildren(SmdDatatableActionButton) actionButtons: QueryList<SmdDatatableActionButton>;
     @ContentChildren(SmdContextualDatatableButton) contextualButtons: QueryList<SmdContextualDatatableButton>;
 
-    constructor(@Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable) {
+    constructor( @Inject(forwardRef(() => SmdDataTable)) private _parent: SmdDataTable) {
     }
 
     public shouldRenderCheckbox() {
@@ -336,8 +336,8 @@ export class SmdDatatableHeader implements AfterContentInit, OnDestroy {
         return this._parent.selectedRows().length;
     }
 
-    private _onFilter(event : any) : void {
-        if(this.filterTimeout) {
+    private _onFilter(event: any): void {
+        if (this.filterTimeout) {
             clearTimeout(this.filterTimeout);
         }
 
@@ -361,9 +361,9 @@ export class SmdDatatableHeader implements AfterContentInit, OnDestroy {
 }
 
 @Component({
-    selector: "smd-datatable",
-    templateUrl: "./datatable.component.html",
-    styleUrls: ["./datatable.component.scss"],
+    selector: 'smd-datatable',
+    templateUrl: './datatable.component.html',
+    styleUrls: ['./datatable.component.scss'],
     encapsulation: ViewEncapsulation.None,
     host: {
         '[class.smd-responsive]': 'responsive'
@@ -390,7 +390,7 @@ export class SmdDataTable implements DoCheck, AfterContentInit, OnDestroy {
     @Input() paginatorRanges: number[] = [10, 25, 50, 100];
     @Input() responsive: boolean = false;
 
-    @Output() onRowSelected: EventEmitter<{model: any, checked: boolean}> = new EventEmitter<{model: any, checked: boolean}>();
+    @Output() onRowSelected: EventEmitter<{ model: any, checked: boolean }> = new EventEmitter<{ model: any, checked: boolean }>();
     @Output() onAllRowsSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(differs: IterableDiffers, private _viewContainer: ViewContainerRef, public changeDetector: ChangeDetectorRef) {
@@ -428,9 +428,8 @@ export class SmdDataTable implements DoCheck, AfterContentInit, OnDestroy {
         }
     }
 
-    isNullOrUndefined(object: any): boolean
-    {
-        return(object ==null || object === undefined);
+    isNullOrUndefined(object: any): boolean {
+        return (object == null || object === undefined);
 
     }
 
@@ -439,7 +438,7 @@ export class SmdDataTable implements DoCheck, AfterContentInit, OnDestroy {
             return true;
         }
 
-        let subtexts : string[] = text.trim().split(" ");
+        let subtexts: string[] = text.trim().split(' ');
         for (let subtext of subtexts) {
             for (let column of columns) {
                 let filterFn = this._filterValue;
@@ -471,11 +470,11 @@ export class SmdDataTable implements DoCheck, AfterContentInit, OnDestroy {
     _onMasterCheckChange() {
         this.rows
             .forEach(
-                (row : SmdDataRowModel) => {
-                    if (row.checked !== this.checked) {
-                        row.checked = this.checked;
-                    }
+            (row: SmdDataRowModel) => {
+                if (row.checked !== this.checked) {
+                    row.checked = this.checked;
                 }
+            }
             );
         this.onAllRowsSelected.emit(this.checked);
     }
@@ -501,7 +500,7 @@ export class SmdDataTable implements DoCheck, AfterContentInit, OnDestroy {
         }
     }
 
-    _onFilter(event : any) : void {
+    _onFilter(event: any): void {
         this.paginatorComponent.reset();
         this._updateRows();
     }

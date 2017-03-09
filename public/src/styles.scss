@@ -1,0 +1,17 @@
+@import "~@angular/material/core/theming/theming";
+@import './prebuilt/indigo-pink';
+.deeppurple-amber {
+    @import './prebuilt/deeppurple-amber';
+}
+
+.pink-bluegrey {
+    @import './prebuilt/pink-bluegrey';
+}
+
+.purple-green {
+    @import './prebuilt/purple-green';
+}
+
+h1 {
+    color: green;
+}
